@@ -1,4 +1,7 @@
 machine:
+  environment:
+    USER_NAME: taejaehan
+    USER_EMAIL: hantaejae@gmail.com
   ruby:
     version: 2.3.1
 
@@ -10,3 +13,10 @@ test:
   post:
     - bundle exec jekyll build
     - bundle exec htmlproofer ./_site --only-4xx --allow-hash-href --assume-extension --check-opengraph --url-ignore "feed.xml"
+
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - ./bin/deploy
