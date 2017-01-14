@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "circleci test Jekyll와 Github로 blog 만들기"
-description: "circleci test Jekyll Theme(Chalk)로 blog page를 만들어 Github 페이지에 올려 블로그를 시작했습니다"
+title: "Jekyll와 Github로 blog 만들기"
+description: "Jekyll Theme(Chalk)로 blog page를 만들어 Github 페이지에 올려 블로그를 시작했습니다"
 tags: [design, jekyll]
 ---
 
