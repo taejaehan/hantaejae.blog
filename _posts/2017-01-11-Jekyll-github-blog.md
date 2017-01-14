@@ -2,7 +2,7 @@
 layout: post
 title: "Jekyll와 Github로 blog 만들기"
 description: "Jekyll Theme(Chalk)로 github page를 만들어 블로그를 시작했습니다"
-tags: [design, jekyll]
+tags: [writing, jekyll, development]
 ---
 
 2013년, 개발공부를 시작하면서 네이버 블로그에 배운 내용을 기록하다가, 그 후에 일을 시작하면서 하지 못했다. 
