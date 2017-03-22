@@ -3,7 +3,6 @@ layout: post
 title: "Javascript 상속"
 description: "Javascript Type, 구조화, 코드재사용, 상속/prototype"
 tags: [development, javascript]
-published: false
 ---
 
 ## Javascript Type
