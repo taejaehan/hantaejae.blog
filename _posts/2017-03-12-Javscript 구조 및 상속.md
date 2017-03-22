@@ -38,6 +38,7 @@ animal.move();
 {% endhighlight %}
 
 2.Function 리턴 방식
+
 {% highlight html %}
 var animal = function(){
 	var age = 2;
