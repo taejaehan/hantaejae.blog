@@ -126,6 +126,8 @@ Object.create()를 사용하는 방법이 있다.
 
 ## Apply, Call
 
+{% highlight html %}
+
 function book(title, author){
 	console.log(title);
 	console.log(author);
@@ -141,6 +143,7 @@ function bibleBook(name, price) {
 
 var bible = new bibleBook('성경','15000');
 
+{% endhighlight %}
 
 
 
