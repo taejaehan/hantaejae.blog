@@ -3,7 +3,7 @@
 name: Taejae Han
 paginate: 25
 paginate_path: "/posts/page/:num/"
-url: http://blog.taejaehan.com/
+url: http://blog.hantaejae.com/
 blog_theme: light # Or use dark
 
 # Optional settings
