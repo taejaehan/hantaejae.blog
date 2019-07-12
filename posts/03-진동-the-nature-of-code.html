@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Taejae Han | 03. 진동 (The nature of code)</title>
+  <meta name="description" content="각도(라디안, 디그리), 회전, 삼각법, 극좌표계/직교좌표계, 진동(진폭,주기), 진자">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="03. 진동 (The nature of code)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blog.hantaejae.com//posts/03-%EC%A7%84%EB%8F%99-the-nature-of-code">
+  <meta property="og:description" content="각도(라디안, 디그리), 회전, 삼각법, 극좌표계/직교좌표계, 진동(진폭,주기), 진자">
+  <meta property="og:site_name" content="Taejae Han">
+  <meta property="og:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://blog.hantaejae.com//posts/03-%EC%A7%84%EB%8F%99-the-nature-of-code">
+  <meta name="twitter:title" content="03. 진동 (The nature of code)">
+  <meta name="twitter:description" content="각도(라디안, 디그리), 회전, 삼각법, 극좌표계/직교좌표계, 진동(진폭,주기), 진자">
+  <meta name="twitter:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://blog.hantaejae.com//feed.xml" type="application/rss+xml" rel="alternate" title="Taejae Han Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Taejae Han">Taejae Han</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/TaejaeHan" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/taejaehan" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:hantaejae@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>03. 진동 (The nature of code)</h1>
+            <p>각도(라디안, 디그리), 회전, 삼각법, 극좌표계/직교좌표계, 진동(진폭,주기), 진자</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                February 22, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  3 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/n-code">n-code</a>
+                
+                  <a href="/tag/development">development</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h2 id="각도">각도</h2>
+
+<h4 id="디그리-도">디그리 (도)</h4>
+
+<p>한바퀴 도는 각도를 360도로 나타내는 단위, 90도(직각)</p>
+
+<h4 id="라디안">라디안</h4>
+
+<p>호의 길이와 반지름의 비율로 각도를 나타내는 단위
+1라디안은 호의 길이와 반지름의 길이가 같아지는 시점의 각도.
+(180도 = PI 라디안, 360도 = 2 * PI 라디안, 90도 = PI/2 라디안)</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="s1">'라디안 = 2 * PI * (디그리/360)'</span></code></pre></figure>
+
+<p><br /></p>
+
+<h2 id="회전-운동">회전 운동</h2>
+
+<ul>
+  <li>위치, 속도, 가속도의 관게도 회전 운동에 똑같이 적용됨</li>
+  <li>(단 위치,속도,가속도는 벡터이고 각도, 각속도, 각가속도는 스칼라 값)</li>
+  <li>물체의 각도를 매프레임마다 그려주고 각도는 각속도로, 각속도는 각가속도로 변화시킨다.</li>
+  <li>각가속도는 직접입력해도 되지만 돌림힘(토크)나 관성모멘트 값을 구해서 각가속도에 적용할 수 있다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">위치 <span class="o">=</span> 위치 + 속도
+속도 <span class="o">=</span> 속도 + 가속도
+
+<span class="s1">'각도 = 각도 + 각속도'</span>
+<span class="s1">'각속도 = 각속도 + 각가속도'</span></code></pre></figure>
+
+<h2 id="삼각법">삼각법</h2>
+
+<ul>
+  <li>사인, 코사인, 탄젠트 등</li>
+  <li>각도를 계산하거나 두 점의 거리를 구하거나 원(또는 호,선)을 만들 때 사용합니다</li>
+</ul>
+
+<p><a href="/assets/documentation/triangle@2x.png" class="fluidbox-trigger">
+  <img src="/assets/documentation/triangle.png" alt="Sample image" />
+</a></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">- <span class="s1">'사인(각도) = 대변 / 빗변'</span>
+- <span class="s1">'코사인(각도) = 밑변 / 빗변'</span>
+- <span class="s1">'탄젠트(각도) = 대변 / 밑변'</span></code></pre></figure>
+
+<h4 id="속도-벡터를-알고-있는-상황에서-속도-벡터의-각도를-구하려면">속도 벡터를 알고 있는 상황에서 속도 벡터의 각도를 구하려면</h4>
+
+<p>탄젠트(각도) = 대변 / 밑변</p>
+<ul>
+  <li>tan(angle) = y / x;
+여기서 angle을 구하려면 아크탄젠트</li>
+  <li>angle = atan(y/x);</li>
+</ul>
+
+<p><a href="/assets/documentation/t_angle@2x.png" class="fluidbox-trigger">
+  <img src="/assets/documentation/t_angle.png" alt="Sample image" />
+</a></p>
+
+<h5 id="vectorab--12-4-일-경우">vectorAB = [12, 4] 일 경우</h5>
+<ul>
+  <li>angle = atan(12/4);</li>
+  <li>angle(라디안) = 1.249</li>
+  <li>(angle(디그리) = 71.565)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="극-좌표계와-직교-좌표계">극 좌표계와 직교 좌표계</h2>
+
+<ul>
+  <li>x좌표와 y 좌표를 사용해서 표시하는 방법을 ‘직교 좌표계’라고 부른다 (데카르트 수학자)</li>
+  <li>원점에서의 각도와 거리로 나타내는 방법을 ‘극 좌표계’라고 부른다</li>
+  <li>‘극 좌표계’로 생각하면 쉬운 방법일 경우에는 계산 후에 ‘직교 좌표계’로 변환하여 나타낸다</li>
+</ul>
+
+<p><a href="/assets/documentation/t_x_y@2x.png" class="fluidbox-trigger">
+  <img src="/assets/documentation/t_x_y.png" alt="Sample image" />
+</a></p>
+
+<p>예를 들어 거리가 50, 각도(theta)가 45도(PI/4라디안)이라면 x,y를 구할 수 있다</p>
+<ul>
+  <li>y = r * sin(theta)</li>
+  <li>x = r * cos(theta)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="진동의-진폭과-주기">진동의 진폭과 주기</h2>
+
+<ul>
+  <li>y = sin(x)의 그래프를 그려보면 -1과 1을 왔다갔다하는 곡선이 나옵니다</li>
+  <li>이러한 형태의 곡선을 진동이라고 합니다.</li>
+  <li>
+    <p>이 값을 물체의 위치로 넣으면 물체를 진동하게 할 수 있습니다</p>
+  </li>
+  <li>진폭(amplitude) : 움직임의 중심과 가장 멀리 이동했을 때의 거리</li>
+  <li>주기(period) : 한 번 완전히 진동하는데 걸리는 시간</li>
+</ul>
+
+<p data-height="400" data-theme-id="0" data-slug-hash="BWBZPQ" data-default-tab="result" data-user="TaejaeHan" data-embed-version="2" data-pen-title="sin" class="codepen">See the Pen <a href="http://codepen.io/TaejaeHan/pen/BWBZPQ/">sin</a> by TaejaeHan (<a href="http://codepen.io/TaejaeHan">@TaejaeHan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async="" src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<p><br /><br /><br /></p>
+
+<h2 id="삼각법과-힘-진자">삼각법과 힘: 진자</h2>
+
+<ul>
+  <li>진자는 고정점에 추가 매달려 있는 것으로 (2차원에서 표현하자면) 중력과 고정점과의 각도에 따라 적용되는 힘을 알아야 한다.</li>
+  <li>진자의 암(줄)의 길이는 고정되어 있다고 생각하면 변하는것은 각도뿐 이다.</li>
+  <li>각가속도를 구하는 방법은 뉴턴의 운동 2법칙과 삼각법을 함께 사용해야 한다.</li>
+  <li>중력은 아래방향으로, 전자의 힘은 암(줄)의 직각 방향으로 힘이 발생했을 때 두 개의 벡터로 직각삼각형을 만들고 삼각법을 사용하여 전자의 각 가속도를 구할 수 있다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">사인<span class="o">(</span>각도<span class="o">)</span> <span class="o">=</span> 암<span class="o">(</span>줄<span class="o">)</span>의 장력 / 중력
+sin<span class="o">(</span>theta<span class="o">)</span> <span class="o">=</span> Fp / Fg
+Fp <span class="o">=</span> Fg <span class="k">*</span> sin<span class="o">(</span>theta<span class="o">)</span>
+
+전자의 각가속도 <span class="o">=</span> 중력 가속도 / sin<span class="o">(</span>theta<span class="o">)</span>
+
+<span class="s1">' 각 가속도 = 중력 * sin(theta) '</span>
+
+<span class="o">(</span>증명보다는 이것을 아는 것만으로 충분하다.<span class="o">)</span></code></pre></figure>
+
+<p data-height="400" data-theme-id="0" data-slug-hash="gmYGeq" data-default-tab="result" data-user="TaejaeHan" data-embed-version="2" data-pen-title="pendulum" class="codepen">See the Pen <a href="http://codepen.io/TaejaeHan/pen/gmYGeq/">pendulum</a> by TaejaeHan (<a href="http://codepen.io/TaejaeHan">@TaejaeHan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async="" src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=03. 진동 (The nature of code) - https://blog.hantaejae.com//posts/03-%EC%A7%84%EB%8F%99-the-nature-of-code ', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://blog.hantaejae.com//posts/03-%EC%A7%84%EB%8F%99-the-nature-of-code', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://blog.hantaejae.com//posts/03-%EC%A7%84%EB%8F%99-the-nature-of-code', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    2019 blog by <a href="/about" title="About me">Taejae Han</a>
+    <!-- Download it <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">here</a>. -->
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-90155456-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Taejae Han | Javascript 상속</title>
+  <meta name="description" content="Javascript Type, 구조화, 코드재사용, 상속/prototype">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Javascript 상속">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blog.hantaejae.com//posts/javscript-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EC%83%81%EC%86%8D">
+  <meta property="og:description" content="Javascript Type, 구조화, 코드재사용, 상속/prototype">
+  <meta property="og:site_name" content="Taejae Han">
+  <meta property="og:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://blog.hantaejae.com//posts/javscript-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EC%83%81%EC%86%8D">
+  <meta name="twitter:title" content="Javascript 상속">
+  <meta name="twitter:description" content="Javascript Type, 구조화, 코드재사용, 상속/prototype">
+  <meta name="twitter:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://blog.hantaejae.com//feed.xml" type="application/rss+xml" rel="alternate" title="Taejae Han Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Taejae Han">Taejae Han</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/TaejaeHan" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/taejaehan" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:hantaejae@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>Javascript 상속</h1>
+            <p>Javascript Type, 구조화, 코드재사용, 상속/prototype</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                March 12, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  2 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/development">development</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h2 id="javascript-type">Javascript Type</h2>
+<ul>
+  <li>수 (Number)</li>
+  <li>문자열 (String)</li>
+  <li>부울 (Boolean)</li>
+  <li>기호 (Symbol)</li>
+  <li>객체 (Object)
+    <ul>
+      <li>함수 (Function)</li>
+      <li>배열 (Array)</li>
+      <li>날짜 (Date)</li>
+      <li>정규식 (RegExp)</li>
+    </ul>
+  </li>
+  <li>널 (Null)</li>
+  <li>정의되지 않음 (Undefined)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="javascript-구조화">Javascript 구조화</h2>
+
+<p>1.Object방식</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">var animal = {
+	age : 2,
+	move : function(){
+		console.log('move');
+	}
+};
+
+animal.move();</code></pre></figure>
+
+<p>2.Function 리턴 방식</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">var animal = function(){
+	var age = 2;
+	var move = function(){
+		console.log('move');
+	};
+	return{
+		age : age,
+		move : move
+	}
+}
+
+animal().move();</code></pre></figure>
+
+<p>3.Function Prototype</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">var animal = function(){
+	this.age = 2;
+	this.move = function(){
+		console.log('move');
+	};
+};
+animal.prototype.bark = function(){
+	console.log('bark');
+}
+var tiger = new animal();
+tiger.move();
+tiger.bark();</code></pre></figure>
+
+<h2 id="javascript-상속">Javascript 상속</h2>
+
+<ul>
+  <li>Javascript는 java처럼 class기반의 언어가 아니다.</li>
+  <li>대신 모든 오브젝트는 다른 오브젝트를 가리키는 prototype이라는 내부링크를 가지고 있다.</li>
+  <li>prototype 내부링크가 연쇄적으로 연결되는 구조를 프로토타입 체인이라 부른다. (마지막 오브젝의 prototype은 null을 가리킨다.)</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">function book(){} 
+
+이라고 book함수가 정의되면 자동으로 book함수의 prototpye객체가 만들어지고 
+book함수의 prototype속성은 새롭게 만들어진 prototype객체를 가리킨다.
+prototype객체의 constructor속성은 A함수를 가리킨다.
+
+book.prototpye (book함수의 prototpye객체)
+book.prototype.constructor (book함수)</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">var book1 = new book();
+
+new연산자와 book함수를 통해 생성한 book1이라는 오브젝트는 book.prototpye 객체를 참조한다.
+book1의 __proto__라는 숨은 속성은 book.prototpye객체를 가리킨다.
+(book함수의 prototpye은 new book(); 를 통해 생성하는 모든 오브젝트의 원형이 된다.)</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">book.prototype.getTitle = function(){
+	return 'bible'
+}
+
+book의 prototype에 getTitle이라는 함수를 추가하면 
+
+console.log(book1.getTitle())
+
+
+'book함수를 통해 생성된 모든 오브젝트들은 book함수의 
+prototpye에 대한 숨은 링크를 가지므로 
+해당 prototpye에 접근하여 사용할 수 있다.'
+
+'따라서 book의 prototpye에 정의된 코드를 
+재사용 할 수 있고 객체 지향적인 프로그래밍이 가능해진다.'</code></pre></figure>
+
+<p>프로토타입을 이용하여 코드를 재사용하는 방법은 
+위에 처럼 new 연산자를 사용하는 방법과
+Object.create()를 사용하는 방법이 있다.</p>
+
+<p>(Object.create()이 현재 권장되고 있고 이미 많이 사용하고있지만, 현재 성능상으로는 new를 사용하는 방법이 더 빠르고 구조가 복잡해지지 않는다면 아직까진 new를 사용해도 문제가 없을 것이다. 따라서 이번 글에는 new를 이용한 방법만 쓰려고 한다)</p>
+
+<h2 id="apply-call">Apply, Call</h2>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">function book(title, author){
+	console.log(title);
+	console.log(author);
+}
+
+function bibleBook(name, price) {
+	//fun.call(thisArg[, arg1[, arg2[, ...]]])
+	//book.call(this, name, price);
+	
+	//fun.apply(thisArg[, argsArray])
+	book.apply(this, [name, price]);
+}
+
+var bible = new bibleBook('성경','15000');</code></pre></figure>
+
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=Javascript 상속 - https://blog.hantaejae.com//posts/javscript-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EC%83%81%EC%86%8D ', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://blog.hantaejae.com//posts/javscript-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EC%83%81%EC%86%8D', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://blog.hantaejae.com//posts/javscript-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EC%83%81%EC%86%8D', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    2019 blog by <a href="/about" title="About me">Taejae Han</a>
+    <!-- Download it <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">here</a>. -->
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-90155456-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Taejae Han | 05. 물리 엔진 라이브러리 (The nature of code)</title>
+  <meta name="description" content="물리엔진 라이브러리, Box2D, toxiclib">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="05. 물리 엔진 라이브러리 (The nature of code)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blog.hantaejae.com//posts/05-%EB%AC%BC%EB%A6%AC-%EC%97%94%EC%A7%84-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-the-nature-of-code">
+  <meta property="og:description" content="물리엔진 라이브러리, Box2D, toxiclib">
+  <meta property="og:site_name" content="Taejae Han">
+  <meta property="og:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://blog.hantaejae.com//posts/05-%EB%AC%BC%EB%A6%AC-%EC%97%94%EC%A7%84-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-the-nature-of-code">
+  <meta name="twitter:title" content="05. 물리 엔진 라이브러리 (The nature of code)">
+  <meta name="twitter:description" content="물리엔진 라이브러리, Box2D, toxiclib">
+  <meta name="twitter:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://blog.hantaejae.com//feed.xml" type="application/rss+xml" rel="alternate" title="Taejae Han Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Taejae Han">Taejae Han</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/TaejaeHan" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/taejaehan" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:hantaejae@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>05. 물리 엔진 라이브러리 (The nature of code)</h1>
+            <p>물리엔진 라이브러리, Box2D, toxiclib</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                March 16, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  4 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/n-code">n-code</a>
+                
+                  <a href="/tag/development">development</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h2 id="물리엔진-라이브러리">물리엔진 라이브러리</h2>
+<ul>
+  <li>복잡한 물리법칙을 구현해주는 다양한 라이브러리가 존재한다.</li>
+  <li>하지만 벡터, 힘, 삼각법 등에 이해가 없다면 라이브러리 문서를 이해하기 힘들고 코드를 최적화, 단순화 시키는 것을 직접 해야한다.</li>
+  <li>원의 충돌은 간단히 구현하기 쉽지만 복잡한 모양의 물체들이 충돌하고 그 후의 속도까지 계산한다면 더 복잡해진다.</li>
+  <li>직접 구현하느니 차라리 가족 또는 친구들과 시간을 보내세요 ( 마음에 드는 구절이다.. )</li>
+</ul>
+
+<h1 id="box2d">Box2D</h1>
+<p><a href="http://box2d.org/">box2D 참고</a><br />
+<a href="http://jbox2d.org/">JBox2D</a><br />
+<a href="https://github.com/shiffman/Box2D-for-Processing">PBox2D(Box2d를 재구성)</a><br />
+<a href="http://www.ricardmarxer.com/">리카르트 막서의 Fisca</a><br />
+<a href="http://box2d-js.sourceforge.net/index2.html">Box2D JS</a></p>
+
+<ul>
+  <li>Box2D에서는 미터, 킬로그램, 초 등의 현실단위를 사용한다.</li>
+  <li>따라서 프로세싱이나 웹의 픽셀단위를 Box2D 세계의 단위로 변경해서 요청하여 물리적 작용을 계산하고, 반대로 결과를 받았을 때는 Box2D의 단위를 다시 픽셀단위로 변경하여 그려줘야 한다.</li>
+  <li>Box2D는 가장 중심의 좌표가(0,0)이고 오른쪽과 위쪽이 양의 방향으로 전통적인 형식의 직교 좌표계를 따르고 있다.</li>
+  <li>반대로 프로세싱이나 웹은 왼쪽 위가(0,0)이고 오른쪽과 아래쪽이 양의 방향으로 전통적인 형식의 화면 좌표계다.</li>
+  <li>Box2D의 핵심 요소
+    <ol>
+      <li>월드(World) : 물리 시뮬레이션을 관리하는 요소. 좌표 공간을 관리하고 생성한 모든 객체(아래 2~5번)를 저장.</li>
+      <li>보디(Body) : Box2D에서 사용할 수 있는 가장 대표적인 요소로, 좌표와 속도를 가진다.</li>
+      <li>셰이프(Shape) : 보디에 붙어서 충돌과 관련된 지오메트리 처리를 담당한다.</li>
+      <li>픽스쳐(Fixture) : 셰이프를 보디에 붙이고 밀도, 마찰, 복원력 등의 요소를 적용하는 요소.</li>
+      <li>조인트(Joint) : 2개의 보디(또는 1개의 보디와 월드)를 연결해서 상호 작용을 일으키게 만드는 요소.</li>
+      <li>Vec2 : Box2D에서 아용하는 벡터
+        <ul>
+          <li>벡터를 구하고 정규화 하는등 기본개념은 같지만 함수 이름과 매개변수가 조금씩 다르다.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h5 id="작업-step">작업 STEP</h5>
+
+<ol>
+  <li>World 생성</li>
+  <li>Body 생성
+ 2.1 BodyDef 객체 생성 (Body 정의)
+ 2.2 BodyDef 객체 속성 정의 (초기 위치, 초기 속도, 초기 각속도, 회전여부, 선형감쇠, 회전감쇠 등)
+     - BodyDef type 
+         1. ) 동적(Dynamic) : 모든 물리 시뮬레이션에 적용. 다른 보디와 상호작용 및 환경적인 힘에도 반응
+         2. ) 정적(Static) : 정적보다는 움직이지 않는 보디. 틀과 같은 것을 만들 떄 사용.
+         3. ) 키네마틱(Kinematic) : 키네마틱 보디는 속도를 직접 설정해서 수동으로 움직일 수있게 하는 요소. 동적 보디와만 충돌하고 정적 보디, 또 다른 키네마틱 보디와는 충돌하지 않음.
+ 2.3 BodyDef 객체로 Body 생성.</li>
+  <li>Shape, Fixture 생성
+    <ul>
+      <li>Body자체는 물리적 반응을 하지 못함.</li>
+      <li>Box2D는 Body와 Shape이 개념을 불리함으로써 하나의 보디에 여러 Shape을 붙일 수 있게 만들었다.
+ 3.1 Shape 객체 생성 (CircleShpae, PolygonsHAPE, ChainShape 등)
+        <ul>
+          <li>PolygonShape 점의 방향 (픽셀 좌표에서 보면 시계 반대방향, Box2D좌표로 변환되면 좌표가 반전되어 시계방향)</li>
+          <li>PolygonShape 에서 오목한 모양(내각이 180도 이상인 것 존재)을 만들면 충돌처리가 되지 않으므로 블록한 모양(모든 내각이 180도 이하)을 2개 붙여서 만들어줘야 한다.
+ 3.2 Fixture 객체를 생성 및 정의 (Fixture의 shape변수에 Shape을 넣어주고, 마찰 계수, 탄성 계수, 밀도 등을 정의)</li>
+          <li>물리 속성을 따로 지정할 것이 아니라면 3.2를 생략해줘도 된다.
+ 3.3 Fixture 생성 (보디에 Fixture를 생성해 준다)</li>
+          <li>3.2를 했다면 Fixrue객체를, 하지 않았다면 Shape객체를 보디에 연결해 준다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>3번을 반복하여 여러개의 Shape을 Body에 붙일 수 있다.</li>
+  <li>Shape을 객체를 Body에 붙이면 기본적으로 Body 객체의 중심에 붙게 된다</li>
+  <li>따라서 Shape의 위치를 바꾸고 싶으면 Bod2D의 결과를 받아 그려줄 때 위치를 변경하여 그려준다.(사갹형 rect(), 원 ellipse() 등)</li>
+</ul>
+
+<h5 id="box2d-joint객체">Box2D Joint객체</h5>
+
+<ul>
+  <li>Body객체를 다른 Body객체와 연결할 수있게 만들어주는 객체.</li>
+  <li>흔들리는 추, 장력이 작용하는 다리, 각목 인형, 축을 기준으로 회전하는 바퀴 등 예제 구현 가능</li>
+  <li>다양한 Joint객체를 지원한다 (DistanceJoint, RevoluteJoint, MouseJoint 등)
+    <ul>
+      <li>DistanceJoint
+        <ul>
+          <li>특정한 간격으로 두 객체를 연결. 연결점은 각 객체의 고정위치(Body중심)에 연결된다.</li>
+          <li>스프링처럼 만들 수 있게 frequencyHz와 dampingRatio 속성을 옵션으로 제공</li>
+        </ul>
+      </li>
+      <li>RevoluteJoint
+        <ul>
+          <li>회전 조인트로 2개의 Body객체를 동일한 고정 위치로 연결해서 Body 객체 사이의 각도만큼 회전</li>
+          <li>enableMotor, motorSpeed, maxMotorTorque등의 속성으로 자동으로 스피드와 회전력을 설정 가능</li>
+        </ul>
+      </li>
+      <li>MouseJoint
+        <ul>
+          <li>Body 객체의 위치를 순간적으로 다른 곳(Mouse point)으로 이동하면 물리 규칙들이 완전히 파괴되므로 MouseJoint로 이동하게 해야한다. 단 충돌이 필요 없는 오브젝트라면 BodyDef type을 키네마틱으로 설정하고 MouseJoint없이 움직이게 하는 것도 가능하다.</li>
+          <li>MouseJoint객체는 Body 객체에 실을 묶어 원하는 장소로 이동시킨다.</li>
+          <li>움직일 오브젝트와 지면(화면)을 연결하고 지면의 target potin를 바꿔준다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="충돌-이벤트">충돌 이벤트</h5>
+
+<ul>
+  <li>Box2D는 인터페이스라는 기능으로 충돌의 순간을 알 수 있게 해준다.</li>
+  <li>beginContact() 두 물체가 충돌하는 시점에 발생</li>
+  <li>endContact() 두물체가 떨어지는 시점에 발생.</li>
+  <li>외에도 preSolve() 충돌하기 직전 발생, postSolve() 충돌 관련 연산 후 발생 등의 함수 존재.</li>
+</ul>
+
+<h5 id="적분법">적분법</h5>
+
+<ul>
+  <li>미분이라는 것은 ‘도함수’를 구하는 과정으로 함수의 도함수라는 것은 시간의 경과에 따라 함수가 어떻게 변화하는지를 나타내는 척도.</li>
+  <li>위치와 그 도함수의 관계 : 위치는 공간의 1개의 점이고 속도는 시간에 경과에 따른 위치의 변화를 나타낸다. 따라서 속도는 위치의 도함수이고 가속도는 속도의 도함수이다.</li>
+  <li>적분은 미분의 반대로 객체를 일정 시간 동안의 속도를 적분하면 해당 시간이 경과된 때의 새로운 위치를 알 수 있다. 위치는 속도의 적분이고, 속도는 가속도의 적분이다.</li>
+  <li>여태 사용했던 위치/속도/가속도는 ‘오일러 적분’이라고 하는데 현실 세계와 비교하면 프레임마다 끊기는 부정확한 결과가 나온다.</li>
+  <li>한 프레임당 20번 정도 계산하면 현실 세계와 비슷해지지만 프로그램이 너무 느려진다.</li>
+  <li>일반적은 프로그램에서는 오일러 적분법을 사용해도 전혀 문제가 없지만 Box2D에서는 좀 더 효율적이고 정확하게 계산하기 위해 Sympletic 오일러 적분을 사용합니다. (혹은 ‘룽게쿠타’라는 방법도 사용)</li>
+</ul>
+
+<h1 id="toxiclib">toxiclib</h1>
+<p><a href="http://toxiclibs.org/">toxiclibs</a><br />
+<a href="http://haptic-data.com/toxiclibsjs/">toxiclibs JS</a><br />
+<a href="https://github.com/liabru/matter-js">matter JS</a></p>
+
+<ul>
+  <li>Box2D와 다르게 베를레 적분법을 사용한다</li>
+  <li>과거의 한 시점의 위치와 현재의 객체 위치를 알고 있다면 속도를 추정가능하고 베를레 적분으로 속도를 정확하게 추정할 수 있기 때문에 속도를 변수로 가지는 대신 프로그램 실행 중에 속도를 계속해서 연산하여 사용.</li>
+  <li>입자 사이의 스프링 결합이 있는 입자계를 구현할 때 굉장히 적합하다.</li>
+  <li>toxiclibs에는 오디오, 색, 위치 등과 관련된 패키지가 많다. 모양 또는 패브리케이션에 관한 geon 패키지도 있다.</li>
+  <li>Box2D처럼 충돌 관련 처리를 해주지 않지만 화면을 돌아다니는 수많은 입자가 서로 밀고 끌어당기거나, 실에 매달려 있는 추를 만들거나 할 때 적합하다.</li>
+  <li>Box2D와 마찬가지로 벡터를 구하고 정규화 하는등 기본개념은 같지만 함수 이름과 매개변수가 조금씩 다르다.</li>
+</ul>
+
+<h5 id="스프링-클래스">스프링 클래스</h5>
+
+<ul>
+  <li>VerletSpring : 2개의 VerletParticle 객체를 연결. 스프링을 단단한 봉으로 만들거나 실 처럼 만들 수 있고, 매달린 객체를 고정 할 수 있다.</li>
+  <li>VerletConstrainedSpring : 최대 길이를 제한 할 수 있는 스프링.</li>
+  <li>
+    <p>VerletMinDistanceSpring : 현재 길이가 정지 길이보다 짧을때만 정지 길이를 강제하는 스프링. 두 객체 사이의 거리가 특정 길이 이상으로 떨어져야 할 때 사용.</p>
+  </li>
+  <li>여러개의 Particle객체를 배치하고 Spring 객체에 연결하면 ‘연체 시뮬레이션’을 쉽게 만들 수 있다.</li>
+  <li>여러개의 대상을 일정한 간격으로 배치하기 위해 힘 지향 그래프를 사용하는데 이 역시 여러개의 파티클을 노드로 사용하고 그 것을 연결하는 스프링의 힘을 사용하묜 쉽게 구현 가능하다.</li>
+</ul>
+
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=05. 물리 엔진 라이브러리 (The nature of code) - https://blog.hantaejae.com//posts/05-%EB%AC%BC%EB%A6%AC-%EC%97%94%EC%A7%84-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-the-nature-of-code ', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://blog.hantaejae.com//posts/05-%EB%AC%BC%EB%A6%AC-%EC%97%94%EC%A7%84-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-the-nature-of-code', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://blog.hantaejae.com//posts/05-%EB%AC%BC%EB%A6%AC-%EC%97%94%EC%A7%84-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-the-nature-of-code', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    2019 blog by <a href="/about" title="About me">Taejae Han</a>
+    <!-- Download it <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">here</a>. -->
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-90155456-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

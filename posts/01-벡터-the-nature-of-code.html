@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Taejae Han | 01. 벡터 (The nature of code)</title>
+  <meta name="description" content="유클리드 벡터(기하 벡터) 개념">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="01. 벡터 (The nature of code)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blog.hantaejae.com//posts/01-%EB%B2%A1%ED%84%B0-the-nature-of-code">
+  <meta property="og:description" content="유클리드 벡터(기하 벡터) 개념">
+  <meta property="og:site_name" content="Taejae Han">
+  <meta property="og:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://blog.hantaejae.com//posts/01-%EB%B2%A1%ED%84%B0-the-nature-of-code">
+  <meta name="twitter:title" content="01. 벡터 (The nature of code)">
+  <meta name="twitter:description" content="유클리드 벡터(기하 벡터) 개념">
+  <meta name="twitter:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://blog.hantaejae.com//feed.xml" type="application/rss+xml" rel="alternate" title="Taejae Han Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Taejae Han">Taejae Han</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/TaejaeHan" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/taejaehan" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:hantaejae@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>01. 벡터 (The nature of code)</h1>
+            <p>유클리드 벡터(기하 벡터) 개념</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                February 5, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  2 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/n-code">n-code</a>
+                
+                  <a href="/tag/development">development</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="http://natureofcode.com/">The natrue of code</a>를 보면서 스터디를 시작.</p>
+
+<h2 id="유클리드-벡터기하-벡터">유클리드 벡터(기하 벡터)</h2>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">- 크기와 방향을 가지는 객체.
+- 점 A에서 B를 가리키는 화살표.</code></pre></figure>
+
+<ul>
+  <li>
+    <p>2차원에서는 A점의 위치(x1,y1), B점의 위치(x2,y2)로,
+3차원에서는 A점의 위치(x1,y1,z1), B점의 위치(x2,y2,z2)로 벡터를 나타낼 수 있다.</p>
+  </li>
+  <li>
+    <p>일반적으로 postion(x,y)값은 방향이 없으므로 스칼라 값이다. 하지만 웹에서는 모두 (0,0)이라는 원점을 가지므로 postion(x,y)만 있어도 +x, +y 양수값이 적용되어 벡터가 된다. 해당 포지션을 기준으로 원을 그리거나 오브젝트를 드로잉 할 수 있다.</p>
+  </li>
+  <li>
+    <p>벡터는 두 점의 위치로도 나타낼 수 있지만, 크기와 각도로도 나타낼 수 있다.</p>
+  </li>
+  <li>
+    <p>벡터의 크기를 1로 바꾸는 것을 normalize라고 하고 크기가 1인 벡터는 단위벡터라고 한다. (여러 방식으로 구한 벡터들을 normalize시켜 단위벡터로 만든 후 원하는 크기로 변환시킬 수 있다)</p>
+  </li>
+</ul>
+
+<h3 id="벡터-거리-단위벡터-javascript">벡터, 거리, 단위벡터 (javascript)</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var posA = {
+    x : 2, 
+    y : 3
+  };
+
+var posB = {
+    x : 4, 
+    y : 7
+  };
+
+//A점에서 B점으로 가는 화살표 벡터
+var vecAB = {
+  disX : posB.x - posA.x,
+  disY : posB.y - posA.y,
+}
+
+console.log('vecAB.disX : ' + vecAB.disX);
+console.log('vecAB.disY : ' + vecAB.disY);
+//vecAB.disX : 2
+//vecAB.disY : 4
+
+//벡터 AB의 거리
+var vecAB_distance = Math.sqrt( Math.pow(vecAB.disX, 2) + Math.pow(vecAB.disY, 2));
+
+console.log('vecAB_distance : ' + vecAB_distance);
+//vecAB_distance : 4.47213595499958
+//벡터 AB의 노말라이즈 (거리값을 1로)
+var normalizeVecAB = {
+  nomX : vecAB.disX/vecAB_distance,
+  nomY : vecAB.disY/vecAB_distance
+}
+console.log('normalizeVecAB.nomX : ' + normalizeVecAB.nomX);
+console.log('normalizeVecAB.nomY : ' + normalizeVecAB.nomY);
+//ormalizeVecAB.nomX : 0.4472135954999579
+//normalizeVecAB.nomY : 0.8944271909999159
+
+var vecAB_nomarilzedDistance = Math.sqrt( Math.pow(normalizeVecAB.nomX, 2) + Math.pow(normalizeVecAB.nomY, 2));
+console.log('vecAB_nomarilzedDistance : ' + vecAB_nomarilzedDistance);
+//vecAB_nomarilzedDistance : 0.9999999999999999
+
+</code></pre>
+</div>
+<ul>
+  <li>위에 공식을 사용하면 A점에서 B점으로 향하는 단위벡터(normalize)를 구할 수 있다.</li>
+  <li>posA, posB는 단순히 position이기도 하지만 (0,0)으로 부터의 vector이기도 하다.</li>
+  <li>역시나 vecAB는 단순한 position이기도 하지만 점 A에서 B로의 vector이기도 하다.</li>
+  <li>역시나 normalizeVecAB는 단순한 position이기도 하지만 점 A에서 B 방향의 거리가 1인 단위벡터이기도 하다.</li>
+</ul>
+
+<h3 id="벡터를-활용하여-random-walker만들기-개념">벡터를 활용하여 random walker만들기 개념</h3>
+
+<ul>
+  <li>position(x,y)을 기준으로 원(혹은 다른 오브젝트)를 그린다.</li>
+  <li>position(x,y)에 veolcity(+2,+3)을 매 프레임 더해주면 오른쪽 2+, 아래 3+으로 움직인다.</li>
+  <li>veolcity(+2,+3)에 acceleration(0.1,0.3) 매 프레임 더해주면 매 프레임 마다 오른쪽 +0.1, 아래 +0.3의 속도가 더 해진다.</li>
+  <li>생성자에서 처음 위치, 속도, 가속도 값과 매 프레임마다 바뀌는 속도 혹은 가속도 값을 이용해 랜덤한 mover를 만들 수 있다.</li>
+</ul>
+
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=01. 벡터 (The nature of code) - https://blog.hantaejae.com//posts/01-%EB%B2%A1%ED%84%B0-the-nature-of-code ', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://blog.hantaejae.com//posts/01-%EB%B2%A1%ED%84%B0-the-nature-of-code', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://blog.hantaejae.com//posts/01-%EB%B2%A1%ED%84%B0-the-nature-of-code', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    2019 blog by <a href="/about" title="About me">Taejae Han</a>
+    <!-- Download it <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">here</a>. -->
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-90155456-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

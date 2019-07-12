@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Taejae Han | 04. 파티클 시스템 (The nature of code)</title>
+  <meta name="description" content="ArrayList, 클래스/상속/다형성/캡슐화">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="04. 파티클 시스템 (The nature of code)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blog.hantaejae.com//posts/04-%ED%8C%8C%ED%8B%B0%ED%81%B4-%EC%8B%9C%EC%8A%A4%ED%85%9C-the-nature-of-code">
+  <meta property="og:description" content="ArrayList, 클래스/상속/다형성/캡슐화">
+  <meta property="og:site_name" content="Taejae Han">
+  <meta property="og:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://blog.hantaejae.com//posts/04-%ED%8C%8C%ED%8B%B0%ED%81%B4-%EC%8B%9C%EC%8A%A4%ED%85%9C-the-nature-of-code">
+  <meta name="twitter:title" content="04. 파티클 시스템 (The nature of code)">
+  <meta name="twitter:description" content="ArrayList, 클래스/상속/다형성/캡슐화">
+  <meta name="twitter:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://blog.hantaejae.com//feed.xml" type="application/rss+xml" rel="alternate" title="Taejae Han Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Taejae Han">Taejae Han</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/TaejaeHan" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/taejaehan" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:hantaejae@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>04. 파티클 시스템 (The nature of code)</h1>
+            <p>ArrayList, 클래스/상속/다형성/캡슐화</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                March 9, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  2 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/n-code">n-code</a>
+                
+                  <a href="/tag/development">development</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h2 id="파티클-시스템">파티클 시스템</h2>
+<ul>
+  <li>배열만으로도 움직이는 많은 요소를 다룰 수 있지만 파티클시스템(상속,다형성등)을 사용하면 객체지향적인 프로그래밍이 가능하여 코드의 재사용이나 구조화가 가능하다.</li>
+</ul>
+
+<h2 id="arraylist">ArrayList</h2>
+
+<ul>
+  <li>일반 배열과 ArrayList모두 foreach문을 사용할 수 있다.</li>
+  <li>ArrayList를 사용하면 일반 배열보다 내부 요소를 쉽게 관리할 수 있다. (관련 func등 존재)</li>
+  <li>ArrayList는 요소를 추가하면 차례대로 0번 인덱스 위치부터 요소가 추가되는 형태이다. 따라서 순차적인 접근이나 뒤에서부터 데이터를 추가하거나 삭제할 때 효과적이다.</li>
+  <li>ArrayList객체 중간에 요소를 추가하면 뒤의 요소 값들이 한 칸뒤의 위치로 전부 복사되고, 삭제하면 뒤에 요소들이 앞으로 한칸 씩 이동한다. 따라서 성능상 중간에 존재하는 데이터를 추가/삭제 할 때는 LinkedList를 사용하는 것이 효과적이다.</li>
+  <li>ArrayList 반복문에서 추가/삭제 할 경우 무한루프를 돌거나 체크하지 못하고 뛰어넘는 요소가 생길 수 있다. 해결 방법으로는 ArrayList를 반복문을 반대로 돌리면 가능하다. 하지만 그리는 순서가 중요할 경우 Iterator, ListIterator라는 특별한 클래스를 사용하면 된다. hasNext()라는 함수를 사용하면 반복되는 요소는 제거하고 건너뛰기 현상도 일어나지 않는다.</li>
+</ul>
+
+<p><br /></p>
+<h2 id="클래스class">클래스(Class)</h2>
+<ul>
+  <li>자바에서 생성되는 프로그램의 최소단위가 클래스이며 특정 객체를 설계해 놓은 것</li>
+  <li>객체를 생성할 때는 new 연산자를 사용한다</li>
+  <li>객체를 생성할 때 멤버 변수의 값을 쉽게 초기화하기 위해 생성자를 정의해서 사용한다</li>
+  <li>하나의 클래스 안에서 객체를 생성할 때 여러 가지 방식으로 멤버 변수를 초기화 할 수 있도록 오버로딩(overloading)을 제공한다.</li>
+</ul>
+
+<p><br /></p>
+<h2 id="상속-다형성-캡슐화">상속, 다형성, 캡슐화</h2>
+
+<ul>
+  <li>상속, 다형성, 캡슐화는 객체 지향 프로그래밍 이론의 기본적인 원칙 3개</li>
+</ul>
+
+<h5 id="상속">상속</h5>
+<ul>
+  <li>상속을 사용하면 다른 클래스에서 변수 또는 함수를 상속받아 사용할 수 있습니다.</li>
+  <li>상위에 있는 것을 부모클래스(슈퍼클래스), 하위에 있는 것을 자식클래스(서브클래스)</li>
+  <li>extends 키워드와 부모클래스명을 사용하여 상속받을 수 있습니다.</li>
+  <li>super()는 부모클래스의 생성자 함수를 호출하는 메서드입니다.</li>
+  <li>상위 클래스를 만들고 하위클래스에서 상위의 변수/함수를 상속받아 그대로 사용하거나 오버라이딩(overriding)하여 재정의 후 사용한다.</li>
+  <li>물론 하위 클래스만의 변수/함수는 따로 정의할 수 있다.</li>
+</ul>
+
+<h5 id="다형성">다형성</h5>
+<ul>
+  <li>한 객체를 다양한 형태로 다룰 수 있는 성질을 다형성이라고 부른다.</li>
+  <li>부모 클래스 타입의 레퍼런스 변수로 자식 클래스 객체를 참조 할 수 있다.</li>
+  <li>부모 클래스의 레퍼런스 변수가 자식 클래스 객체를 참조하게 되면 자식 클래스 객체의 타입은 자동으로 부모 클래스 타입으로 변화된다.(UpCasting)</li>
+  <li>부모 클래스 타입을 자식 클래스 변수에 참조시키려면 명시적으로 자식 클래스 타입으로 캐스팅 해주어야 한다.(DownCasting)</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Dog rover <span class="o">=</span> new Dog<span class="o">()</span>;
+Animal sop <span class="o">=</span> new Dog<span class="o">()</span>;
+Dog rover2 <span class="o">=</span> <span class="o">(</span>Animal<span class="o">)</span>sop;</code></pre></figure>
+
+<h5 id="캡슐화">캡슐화</h5>
+<ul>
+  <li>연관있는 변수와 함수를 하나로 묶고 실제 구현내용을 외부에 감추는 것.</li>
+  <li>외부 객체에서는 노출되는 변수와 함수만 이용가능</li>
+  <li>외부의 잘못된 사용으로 객체의 손상을 방지하여 독립성을 유지한다.</li>
+</ul>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=04. 파티클 시스템 (The nature of code) - https://blog.hantaejae.com//posts/04-%ED%8C%8C%ED%8B%B0%ED%81%B4-%EC%8B%9C%EC%8A%A4%ED%85%9C-the-nature-of-code ', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://blog.hantaejae.com//posts/04-%ED%8C%8C%ED%8B%B0%ED%81%B4-%EC%8B%9C%EC%8A%A4%ED%85%9C-the-nature-of-code', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://blog.hantaejae.com//posts/04-%ED%8C%8C%ED%8B%B0%ED%81%B4-%EC%8B%9C%EC%8A%A4%ED%85%9C-the-nature-of-code', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    2019 blog by <a href="/about" title="About me">Taejae Han</a>
+    <!-- Download it <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">here</a>. -->
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-90155456-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

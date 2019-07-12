@@ -1,20 +1,74 @@
----
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ site.name | xml_escape }}</title>
-    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
-    <link>{{ site.url }}</link>
-    <atom:link href="{{ page.path | absolute_url }}" rel="self" type="application/rss+xml" />
-    {% for post in site.posts limit:10 %}
+    <title>Taejae Han</title>
+    <description></description>
+    <link>https://blog.hantaejae.com/</link>
+    <atom:link href="https://blog.hantaejae.com//feed.xml" rel="self" type="application/rss+xml" />
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.description | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | absolute_url }}</link>
-        <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+        <title>06. 자율 에이전트 (The nature of code)</title>
+        <description>자율 에이전트, 차량과 조향, 조향력, 이동, 도착, 배회, 흐름장 추적, 내적, 경로 추적, 복잡계, 군집 운동(분리, 정렬, 결합), 알고리즘의 효율성, 최적화 방법</description>
+        <pubDate>Tue, 18 Apr 2017 00:00:00 +0900</pubDate>
+        <link>https://blog.hantaejae.com//posts/06-%EC%9E%90%EC%9C%A8-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-the-nature-of-code</link>
+        <guid isPermaLink="true">https://blog.hantaejae.com//posts/06-%EC%9E%90%EC%9C%A8-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-the-nature-of-code</guid>
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>05. 물리 엔진 라이브러리 (The nature of code)</title>
+        <description>물리엔진 라이브러리, Box2D, toxiclib</description>
+        <pubDate>Thu, 16 Mar 2017 00:00:00 +0900</pubDate>
+        <link>https://blog.hantaejae.com//posts/05-%EB%AC%BC%EB%A6%AC-%EC%97%94%EC%A7%84-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-the-nature-of-code</link>
+        <guid isPermaLink="true">https://blog.hantaejae.com//posts/05-%EB%AC%BC%EB%A6%AC-%EC%97%94%EC%A7%84-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-the-nature-of-code</guid>
+      </item>
+    
+      <item>
+        <title>Javascript 상속</title>
+        <description>Javascript Type, 구조화, 코드재사용, 상속/prototype</description>
+        <pubDate>Sun, 12 Mar 2017 00:00:00 +0900</pubDate>
+        <link>https://blog.hantaejae.com//posts/javscript-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EC%83%81%EC%86%8D</link>
+        <guid isPermaLink="true">https://blog.hantaejae.com//posts/javscript-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EC%83%81%EC%86%8D</guid>
+      </item>
+    
+      <item>
+        <title>04. 파티클 시스템 (The nature of code)</title>
+        <description>ArrayList, 클래스/상속/다형성/캡슐화</description>
+        <pubDate>Thu, 09 Mar 2017 00:00:00 +0900</pubDate>
+        <link>https://blog.hantaejae.com//posts/04-%ED%8C%8C%ED%8B%B0%ED%81%B4-%EC%8B%9C%EC%8A%A4%ED%85%9C-the-nature-of-code</link>
+        <guid isPermaLink="true">https://blog.hantaejae.com//posts/04-%ED%8C%8C%ED%8B%B0%ED%81%B4-%EC%8B%9C%EC%8A%A4%ED%85%9C-the-nature-of-code</guid>
+      </item>
+    
+      <item>
+        <title>03. 진동 (The nature of code)</title>
+        <description>각도(라디안, 디그리), 회전, 삼각법, 극좌표계/직교좌표계, 진동(진폭,주기), 진자</description>
+        <pubDate>Wed, 22 Feb 2017 00:00:00 +0900</pubDate>
+        <link>https://blog.hantaejae.com//posts/03-%EC%A7%84%EB%8F%99-the-nature-of-code</link>
+        <guid isPermaLink="true">https://blog.hantaejae.com//posts/03-%EC%A7%84%EB%8F%99-the-nature-of-code</guid>
+      </item>
+    
+      <item>
+        <title>02. 힘 (The nature of code)</title>
+        <description>힘, 뉴턴의 운동 법칙, 가속도, 질량, 마찰력, 저항력, 중력(인력)</description>
+        <pubDate>Wed, 15 Feb 2017 00:00:00 +0900</pubDate>
+        <link>https://blog.hantaejae.com//posts/02-%ED%9E%98-the-nature-of-code</link>
+        <guid isPermaLink="true">https://blog.hantaejae.com//posts/02-%ED%9E%98-the-nature-of-code</guid>
+      </item>
+    
+      <item>
+        <title>01. 벡터 (The nature of code)</title>
+        <description>유클리드 벡터(기하 벡터) 개념</description>
+        <pubDate>Sun, 05 Feb 2017 00:00:00 +0900</pubDate>
+        <link>https://blog.hantaejae.com//posts/01-%EB%B2%A1%ED%84%B0-the-nature-of-code</link>
+        <guid isPermaLink="true">https://blog.hantaejae.com//posts/01-%EB%B2%A1%ED%84%B0-the-nature-of-code</guid>
+      </item>
+    
+      <item>
+        <title>Jekyll와 Github로 blog 만들기</title>
+        <description>Jekyll Theme(Chalk)로 github page를 만들어 블로그를 시작했습니다</description>
+        <pubDate>Wed, 11 Jan 2017 00:00:00 +0900</pubDate>
+        <link>https://blog.hantaejae.com//posts/jekyll-github-blog</link>
+        <guid isPermaLink="true">https://blog.hantaejae.com//posts/jekyll-github-blog</guid>
+      </item>
+    
   </channel>
 </rss>

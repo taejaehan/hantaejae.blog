@@ -1,49 +1,365 @@
----
-layout: default
-title: "Taejae Han Blog"
-description: "Frontend-Developer & Desiner who like making interactive visualization"
----
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Taejae Han | Taejae Han Blog</title>
+  <meta name="description" content="Frontend-Developer & Desiner who like making interactive visualization">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<ul class="article-list">
-  {% for post in paginator.posts %}
+  <meta property="og:title" content="Taejae Han Blog">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blog.hantaejae.com//">
+  <meta property="og:description" content="Frontend-Developer & Desiner who like making interactive visualization">
+  <meta property="og:site_name" content="Taejae Han">
+  <meta property="og:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://blog.hantaejae.com//">
+  <meta name="twitter:title" content="Taejae Han Blog">
+  <meta name="twitter:description" content="Frontend-Developer & Desiner who like making interactive visualization">
+  <meta name="twitter:image" content="https://blog.hantaejae.com//assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://blog.hantaejae.com//feed.xml" type="application/rss+xml" rel="alternate" title="Taejae Han Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Taejae Han">Taejae Han</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/TaejaeHan" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/taejaehan" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:hantaejae@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+  </ul>
+</nav>
+
+        <ul class="article-list">
+  
     <li class="article-list-item reveal">
-      <a href="{{ post.url | relative_url }}" title="{{ post.title }}">
+      <a href="/posts/06-%EC%9E%90%EC%9C%A8-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-the-nature-of-code" title="06. 자율 에이전트 (The nature of code)">
         <h5>
-          {{ post.title }}
+          06. 자율 에이전트 (The nature of code)
           <span class="icon icon-ios-arrow-thin-right"></span>
         </h5>
       </a>
-      <p>{{ post.description }}</p>
+      <p>자율 에이전트, 차량과 조향, 조향력, 이동, 도착, 배회, 흐름장 추적, 내적, 경로 추적, 복잡계, 군집 운동(분리, 정렬, 결합), 알고리즘의 효율성, 최적화 방법</p>
       <div class="article-list-footer">
         <span class="article-list-date">
-          {{ post.date | date: "%B %-d, %Y" }}
+          April 18, 2017
         </span>
         <span class="article-list-divider">-</span>
         <span class="article-list-minutes">
-          {% capture words %}
-            {{ post.content | number_of_words }}
-          {% endcapture %}
-          {% unless words contains "-" %}
-            {{ words | plus: 250 | divided_by: 250 | append: " minute read" }}
-          {% endunless %}
+          
+          
+            7 minute read
+          
         </span>
         <span class="article-list-divider">-</span>
         <div class="article-list-tags">
-          {% for tag in post.tags %}
-            <a href="{{ 'tag/' | relative_url }}{{ tag }}">{{ tag }}</a>
-          {% endfor %}
+          
+            <a href="/tag/n-code">n-code</a>
+          
+            <a href="/tag/development">development</a>
+          
+            <a href="/tag/javascript">javascript</a>
+          
         </div>
       </div>
     </li>
-  {% endfor %}
-  {% if paginator.total_pages > 1 %}
-    <li class="article-pagination reveal">
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path }}" class="article-pagination-right">Newer posts <span class="icon icon-ios-arrow-thin-right"></span></a>
-      {% endif %}
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path }}"><span class="icon icon-ios-arrow-thin-left"></span> Older posts</a>
-      {% endif %}
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/05-%EB%AC%BC%EB%A6%AC-%EC%97%94%EC%A7%84-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-the-nature-of-code" title="05. 물리 엔진 라이브러리 (The nature of code)">
+        <h5>
+          05. 물리 엔진 라이브러리 (The nature of code)
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>물리엔진 라이브러리, Box2D, toxiclib</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          March 16, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            4 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/n-code">n-code</a>
+          
+            <a href="/tag/development">development</a>
+          
+            <a href="/tag/javascript">javascript</a>
+          
+        </div>
+      </div>
     </li>
-  {% endif %}
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/javscript-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EC%83%81%EC%86%8D" title="Javascript 상속">
+        <h5>
+          Javascript 상속
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>Javascript Type, 구조화, 코드재사용, 상속/prototype</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          March 12, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            2 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/development">development</a>
+          
+            <a href="/tag/javascript">javascript</a>
+          
+        </div>
+      </div>
+    </li>
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/04-%ED%8C%8C%ED%8B%B0%ED%81%B4-%EC%8B%9C%EC%8A%A4%ED%85%9C-the-nature-of-code" title="04. 파티클 시스템 (The nature of code)">
+        <h5>
+          04. 파티클 시스템 (The nature of code)
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>ArrayList, 클래스/상속/다형성/캡슐화</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          March 9, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            2 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/n-code">n-code</a>
+          
+            <a href="/tag/development">development</a>
+          
+            <a href="/tag/javascript">javascript</a>
+          
+        </div>
+      </div>
+    </li>
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/03-%EC%A7%84%EB%8F%99-the-nature-of-code" title="03. 진동 (The nature of code)">
+        <h5>
+          03. 진동 (The nature of code)
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>각도(라디안, 디그리), 회전, 삼각법, 극좌표계/직교좌표계, 진동(진폭,주기), 진자</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          February 22, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            3 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/n-code">n-code</a>
+          
+            <a href="/tag/development">development</a>
+          
+            <a href="/tag/javascript">javascript</a>
+          
+        </div>
+      </div>
+    </li>
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/02-%ED%9E%98-the-nature-of-code" title="02. 힘 (The nature of code)">
+        <h5>
+          02. 힘 (The nature of code)
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>힘, 뉴턴의 운동 법칙, 가속도, 질량, 마찰력, 저항력, 중력(인력)</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          February 15, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            3 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/n-code">n-code</a>
+          
+            <a href="/tag/development">development</a>
+          
+            <a href="/tag/javascript">javascript</a>
+          
+        </div>
+      </div>
+    </li>
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/01-%EB%B2%A1%ED%84%B0-the-nature-of-code" title="01. 벡터 (The nature of code)">
+        <h5>
+          01. 벡터 (The nature of code)
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>유클리드 벡터(기하 벡터) 개념</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          February 5, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            2 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/n-code">n-code</a>
+          
+            <a href="/tag/development">development</a>
+          
+            <a href="/tag/javascript">javascript</a>
+          
+        </div>
+      </div>
+    </li>
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/jekyll-github-blog" title="Jekyll와 Github로 blog 만들기">
+        <h5>
+          Jekyll와 Github로 blog 만들기
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>Jekyll Theme(Chalk)로 github page를 만들어 블로그를 시작했습니다</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          January 11, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            1 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/writing">writing</a>
+          
+            <a href="/tag/jekyll">jekyll</a>
+          
+            <a href="/tag/development">development</a>
+          
+        </div>
+      </div>
+    </li>
+  
+  
 </ul>
+
+        <footer class="footer reveal">
+  <p>
+    2019 blog by <a href="/about" title="About me">Taejae Han</a>
+    <!-- Download it <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">here</a>. -->
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-90155456-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

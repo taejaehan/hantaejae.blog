@@ -1,4 +1,0 @@
----
-slug: formula
-name: Formula
----
